@@ -1,0 +1,42 @@
+package com.demo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.demo.entity.ApprovedLoans;
+import com.demo.repository.IApprovedLoansRepo;
+
+@Service
+public class ApprovedLoansServImpl implements IApprovedLoansService {
+	
+	IApprovedLoansRepo iApprovedLoansRepo;
+	@Autowired
+	public ApprovedLoansServImpl(IApprovedLoansRepo iApprovedLoansRepo) {
+		super();
+		this.iApprovedLoansRepo = iApprovedLoansRepo;
+	}
+	@Override
+	public List<ApprovedLoans> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ApprovedLoans findById(int theId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void save(ApprovedLoans theApprovedLoans) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void deleteById(int theId) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}

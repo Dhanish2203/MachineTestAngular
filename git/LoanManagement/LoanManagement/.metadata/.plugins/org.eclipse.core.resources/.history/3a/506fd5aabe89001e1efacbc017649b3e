@@ -1,0 +1,8 @@
+package com.demo.entity;
+
+public class LoanDetails {
+	
+	private int loanId;
+	private String loanName;
+
+}

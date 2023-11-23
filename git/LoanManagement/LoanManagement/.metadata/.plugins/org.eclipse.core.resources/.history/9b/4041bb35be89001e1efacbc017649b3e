@@ -1,0 +1,15 @@
+package com.demo.entity;
+
+public class CustomerDetails {
+	
+	private int custNo;
+	private String custName;
+	private String custPlace;
+	private Long custPhone;
+	private String custEmail;
+	private String custPass;
+	private int loanId;
+	private LoanDetails loanDetails;
+	private Long loanAmount;
+
+}

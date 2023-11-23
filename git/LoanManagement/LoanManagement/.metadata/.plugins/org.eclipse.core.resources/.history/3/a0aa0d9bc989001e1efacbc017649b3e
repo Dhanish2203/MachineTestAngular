@@ -1,0 +1,94 @@
+package com.demo.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.demo.entity.ApprovedLoans;
+import com.demo.entity.LoanDetails;
+import com.demo.service.IApprovedLoansService;
+
+@CrossOrigin
+@RestController
+@RequestMapping("/api")
+public class ApprovedLoansController {
+	
+	private IApprovedLoansService iApprovedLoandServ;
+	@Autowired
+	public ApprovedLoansController(IApprovedLoansService iApprovedLoandServ) {
+		super();
+		this.iApprovedLoandServ = iApprovedLoandServ;
+	}
+	
+	@GetMapping("/approves")
+
+	public List<ApprovedLoans> findAll() {
+
+	return iApprovedLoandServ.findAll();
+
+	}
+
+	@GetMapping("/approves/{loanId}")
+
+	public ApprovedLoans getApprovedLoans(@PathVariable int loanId) {
+
+		ApprovedLoans theApprovedLoans = iApprovedLoandServ.findById(loanId);
+
+	if (theApprovedLoans == null) {
+
+	throw new RuntimeException("loan id not found-" + loanId);
+
+	}
+
+	return theApprovedLoans;
+
+	}
+
+	@PostMapping("/loans")
+
+	public ApprovedLoans addApprovedLoans(@RequestBody ApprovedLoans theApprovedLoans) {
+
+	theApprovedLoans.setLoanId(0);
+
+	iApprovedLoandServ.save(theApprovedLoans);
+
+	return theApprovedLoans;
+
+	}
+
+
+
+
+	@DeleteMapping("/approves/{loanId}")
+
+	public String deleteApprovedLoans(@PathVariable int loanId) {
+
+		ApprovedLoans theApprovedLoans = iApprovedLoandServ.findById(loanId);
+
+	if (theApprovedLoans == null) {
+
+	throw new RuntimeException("loan id not found-" + loanId);
+
+	}
+
+	iApprovedLoandServ.deleteById(loanId);
+
+	return "Deleted loan id: " + loanId;
+
+	}
+	
+	
+	
+
+
+	
+
+}

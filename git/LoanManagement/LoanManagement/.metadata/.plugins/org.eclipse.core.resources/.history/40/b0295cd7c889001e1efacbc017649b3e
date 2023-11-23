@@ -1,0 +1,19 @@
+package com.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.demo.repository.IApprovedLoansRepo;
+
+@Service
+public class ApprovedLoansServImpl {
+	
+	IApprovedLoansRepo iApprovedLoansRepo;
+	@Autowired
+	public ApprovedLoansServImpl(IApprovedLoansRepo iApprovedLoansRepo) {
+		super();
+		this.iApprovedLoansRepo = iApprovedLoansRepo;
+	}
+	
+
+}

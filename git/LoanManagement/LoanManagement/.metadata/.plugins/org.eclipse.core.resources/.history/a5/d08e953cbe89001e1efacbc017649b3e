@@ -1,0 +1,20 @@
+package com.demo.entity;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class CustomerDetails {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int custNo;
+	private String custName;
+	private String custPlace;
+	private Long custPhone;
+	private String custEmail;
+	private String custPass;
+	private int loanId;
+	private LoanDetails loanDetails;
+	private Long loanAmount;
+
+}

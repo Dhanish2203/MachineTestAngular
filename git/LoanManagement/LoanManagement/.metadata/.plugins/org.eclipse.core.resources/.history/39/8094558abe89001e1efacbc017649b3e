@@ -1,0 +1,28 @@
+package com.demo.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class CustomerDetails {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int custNo;
+	private String custName;
+	private String custPlace;
+	private Long custPhone;
+	private String custEmail;
+	private String custPass;
+	private int loanId;
+	
+	@ManyToOne
+    @JoinColumn(name = "loanId",insertable=false, updatable=false)
+	private LoanDetails loanDetails;
+	private Long loanAmount;
+
+}

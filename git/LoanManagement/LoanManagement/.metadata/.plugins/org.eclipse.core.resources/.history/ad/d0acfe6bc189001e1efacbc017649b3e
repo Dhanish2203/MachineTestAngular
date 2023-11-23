@@ -1,0 +1,12 @@
+package com.demo.entity;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class ApprovedLoans {
+	
+	private int appNo;
+	private int verId;
+	private VerifiedLoans verifiedLoans;
+
+}

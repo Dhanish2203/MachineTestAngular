@@ -1,0 +1,125 @@
+package com.demo.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.demo.entity.CustomerDetails;
+import com.demo.service.ICustomerService;
+
+@CrossOrigin
+@RestController
+@RequestMapping("/api")
+public class CustomerController {
+	private ICustomerService iCustServ;
+@Autowired
+	public CustomerController(ICustomerService iCustServ) {
+		super();
+		this.iCustServ = iCustServ;
+	}
+
+
+
+@GetMapping("/customers")
+
+public List<CustomerDetails> findAll() {
+
+return iCustServ.findAll();
+
+}
+
+@GetMapping("/customers/{custId}")
+
+public CustomerDetails getEmployee(@PathVariable int custId) {
+
+	CustomerDetails theCustomerDetails = iCustServ.findById(custId);
+
+if (theCustomerDetails == null) {
+
+throw new RuntimeException("customer id not found-" + custId);
+
+}
+
+return theCustomerDetails;
+
+}
+
+@PostMapping("/customers")
+
+public CustomerDetails addPatient(@RequestBody CustomerDetails theCustomerDetails) {
+
+theCustomerDetails.setPatId(0);
+
+iCustServ.save(theCustomerDetails);
+
+return theCustomerDetails;
+
+}
+
+@PutMapping("/receptionists/{patId}")
+
+public PatientDetails updatePatient(@PathVariable int patId, @RequestBody PatientDetails thePatientDetails) {
+
+PatientDetails pat = iCustServ.findById(patId);
+
+if (thePatientDetails == null) {
+
+throw new RuntimeException("patient id not found-" + patId);
+
+}
+
+pat.setPatFName(thePatientDetails.getPatFName());
+
+pat.setPatAdd(thePatientDetails.getPatAdd());
+
+pat.setPatBldGrp(thePatientDetails.getPatBldGrp());
+
+pat.setPatDob(thePatientDetails.getPatDob());
+
+pat.setPatAge(thePatientDetails.getPatAge());
+
+pat.setPatMob(thePatientDetails.getPatMob());
+
+pat.setPatEmg(thePatientDetails.getPatEmg());
+
+pat.setPatGend(thePatientDetails.getPatGend());
+
+pat.setPatEmail(thePatientDetails.getPatEmail());
+
+iCustServ.save(pat);
+
+return pat;
+
+}
+
+@DeleteMapping("/receptionists/{patId}")
+
+public String deleteEmployee(@PathVariable int patId) {
+
+PatientDetails thePatientDetails = iCustServ.findById(patId);
+
+if (thePatientDetails == null) {
+
+throw new RuntimeException("patient id not found-" + patId);
+
+}
+
+iCustServ.deleteById(patId);
+
+return "Deleted patientid: " + patId;
+
+}
+
+	
+	
+
+}
